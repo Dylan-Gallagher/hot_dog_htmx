@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hot_dog</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@5"
+            rel="stylesheet"
+            type="text/css"
+        />
+
+        <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    </head>
+    <body>
+        <div id="main" data-dioxus-id="0">
+            <!-- NAVBAR -->
+            <div id="navbar" class="navbar bg-base-100 shadow-sm">
+                <div id="title" class="flex-1">
+                    <a href="/" class="btn btn-ghost text-xl"
+                        ><h1>HotDog!</h1></a
+                    >
+                </div>
+                <div id="rest_of_navbar" class="flex-none">
+                    <ul id="nav_ul" class="menu menu-horizontal px-1">
+                        <li id="favourites_link">
+                            <a href="/favourites" id="heart">Favourites</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                id="outer"
+                class="bg-gray-100 min-h-screen flex flex-col"
+                data-node-hydration="7"
+            >
+                <div
+                    id="inner"
+                    class="flex-grow flex flex-col items-center justify-center p-4"
+                >
+                    <div
+                        id="dogview"
+                        class="w-full max-w-3xl aspect-video bg-white rounded-xl shadow-md overflow-hidden flex items-center justify-center"
+                    >
+                        <!-- DOGGO IMAGE -->
+                        <img
+                            id="doggo_image"
+                            class="w-128 h-128 object-contain"
+                            src="{{doggo_src}}"
+                        />
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div id="buttons" class="mt-6 flex gap-6">
+                        <button
+                            hx-get="/skip"
+                            hx-target="#doggo_image"
+                            hx-swap="outerHTML"
+                            id="skip"
+                            class="btn btn-primary"
+                        >
+                            skip</button
+                        ><button id="save" class="btn btn-secondary">
+                            save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
